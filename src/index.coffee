@@ -85,7 +85,7 @@ module.exports = class DateType
     @param {Number}   The year.
     @return {Boolean} true if date is within a LeapYear, otherwise false.
   ###
-  isLeapYear: (aYear)-> ((aYear % 4 == 0 && aYear % 100 != 0) || aYear % 400 == 0)
+  isLeapYear: (aYear)-> (aYear & 3) == 0 and (aYear % 25 != 0 || (aYear & 15) == 0)
   ###
     Gets the number of days in the month, given a year and month value. Automatically corrects for LeapYear.
     @param {Number}   The year.
