@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - "0.10"
+  - "0.11"
+  - "0.12"
+  - "1.0"
+  - "1.8"
+  - "2.0"
+  - "2.2"
+  - "2.3"
+  - "4.0"
+  - "5.0"
+before_install:
+  - npm install -g grunt-cli
+  - npm install coffee-script
+before_script: grunt build
+script: npm run-script test-cov
+after_success:
+  - test -e ./coverage/lcov.info && npm install codeclimate-test-reporter && codeclimate-test-reporter
+    < ./coverage/lcov.info
+notifications:
+  email:
+    - snowyu.lee@gmail.com
+addons:
+  code_climate:
+    repo_token:
+      secure: "hXPPwC3RP1Xm2alW7cf1YwZgQKvXTTgcscFKRREd7dfXb+J5c/jnFQoaWLnEPVAGEH1o4H3HSwNIXNqUjWeuAnFtV8/y3XtjWdTMNRvgZp/NcCTjMzW1o9ZflSXoDa8U5+0NyyOT/5etIlxY2AUmE7OuxuLbVmszLgvD3NQMfdotfB80faXINhIRMF8MKc96+jYbJMg1/GD7KPGZK47oc96E884xU3IVUnWC1LcL/7ly408KvPpjk0hrbzsDz6CQHxjhrB5QoK+xpwH8HFdWV4UoFznd2qU7MoHfFabCEkjpm0kGROdLVgCnTLXKi6VV5dXfWgeFD0G82Jnqnnkbiv9zXrEirdvtsLSUYbOI0bvE6MMg2/HduvqAoaSSlosI7gXiXe+6As5XJ6PykfLyBMMPQ/5sxssM5Xnpre7bYfKCvKTuEqzcEIMtDfP1VK6Bu6/cSrvFANBjMCJVldC6eL5k02mNqEfzULBZfpBdNp71ttAjINMCm0TozasyaDA9l0T4MVwwn3R7L3N5K7H9AqNxq0v0burZrGYZSM9y+MYYcO5bTSflnXcuZNEajvgyWm83TXBrLNb1v0bt0Koq6CfZeLypBFZOIU0rd2uCGmZ7bdNvlyIjUY9ypF0idFxT6pTwDmySF2iCFjaxMfoPaiikP58VCADckZlCS/T6JL4="
