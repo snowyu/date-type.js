@@ -62,6 +62,27 @@ console.log(nextDay > today)
 
 ## API
 
+* The DateType Class
+  * Methods:
+    * `now()`: Gets a date type object that is set to the current date time.
+    * `today()`: Gets a date type object that is set to the current date.
+      * The time is set to the start of the day (00:00 or 12:00 AM).
+    * `clearTime(date)`: Resets the time of the Date object to 12:00 AM (00:00), which is the start of the day.
+    * `isLeapYear(aYear)`: Determines if the year whether a LeapYear.
+    * `getDaysInMonth(aYear, aMonth)`: Gets the number of days in the month, given a year and month value. Automatically corrects for LeapYear.
+* The DateType Value Class
+  * Methods:
+    * `addYears(value)`: Adds the specified number of years to this instance.
+    * `addMonths(value)`: Adds the specified number of months to this instance.
+    * `addWeeks(value)`: Adds the specified number of weeks to this instance.
+    * `addDays(value)`: Adds the specified number of days to this instance.
+    * `clearTime()`: Resets the time of this instance to 12:00 AM (00:00), which is the start of the day.
+    * `isLeapYear()`: Determines this date whether a LeapYear.
+    * `getDaysInMonth()`: Gets the number of days in the month. Automatically corrects for LeapYear.
+    * `equals(value)`: Compares this instance to another Date object and returns true if they are equal.
+    * `compareTo(value)`: Compares this instance to a Date object and returns an number indication of their relative values.
+      * `return`: -1 = this is lessthan date. 0 = values are equal. 1 = this is greaterthan date.
+
 See [abstract-type](https://github.com/snowyu/abstract-type.js)
 
 ## TODO
