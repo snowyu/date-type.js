@@ -114,3 +114,46 @@ module.exports = (DateTypeInfo)->
       it 'should is valid the value object', ->
         n = DateType.create 12
         expect(n.isValid()).to.be.true
+    describe '.isLeapYear', ->
+      it 'should check whether be a leap year', ->
+        DateType.create('2012').isLeapYear().should.be.true
+        DateType.create('2016').isLeapYear().should.be.true
+        DateType.create('2020').isLeapYear().should.be.true
+        DateType.create('2024').isLeapYear().should.be.true
+        for i in [2013..2015]
+          DateType.create(String i).isLeapYear().should.be.false
+        for i in [2017..2019]
+          DateType.create(String i).isLeapYear().should.be.false
+        for i in [2021..2023]
+          DateType.create(String i).isLeapYear().should.be.false
+    describe '.getDaysInMonth', ->
+      it 'should get the days in a specifiedd month', ->
+        DateType.create('2016-1').getDaysInMonth().should.be.equal 31
+        DateType.create('2016-2').getDaysInMonth().should.be.equal 29
+        DateType.create('2013-2').getDaysInMonth().should.be.equal 28
+    describe '.clearTime', ->
+        d = DateType.create().clearTime()
+        d.getHours().should.be.equal 0
+        d.getMinutes().should.be.equal 0
+        d.getSeconds().should.be.equal 0
+        d.getMilliseconds().should.be.equal 0
+    describe '.addDays', ->
+      it 'should add some days to a date', ->
+        d = DateType.create('2016-12-1').clearTime().addDays(12)
+        d.equals(DateType.create('2016-12-13').clearTime()).should.be.true
+    describe '.addWeeks', ->
+      it 'should add some weeks to a date', ->
+        d = DateType.create('2016-2-28').clearTime().addWeeks(1)
+        d.equals(DateType.create('2016-3-6').clearTime()).should.be.true
+    describe '.addMonths', ->
+      it 'should add some months to a date', ->
+        d = DateType.create('2016-2-28').clearTime().addMonths(1)
+        d.equals(DateType.create('2016-3-28').clearTime()).should.be.true
+    describe '.addYears', ->
+      it 'should add some years to a date', ->
+        d = DateType.create('2016-2-28').clearTime().addYears(1)
+        d.equals(DateType.create('2017-2-28').clearTime()).should.be.true
+    describe '.compareTo', ->
+        DateType.create(2).compareTo(1).should.be.equal 1
+        DateType.create(1).compareTo(2).should.be.equal -1
+        DateType.create(1).compareTo(1).should.be.equal 0

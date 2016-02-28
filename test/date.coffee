@@ -94,6 +94,36 @@ module.exports = (DateTypeInfo, Tests)->
         expect(t.getMinutes()).to.be.equal 0
         expect(t.getSeconds()).to.be.equal 0
         expect(t.getMilliseconds()).to.be.equal 0
+    describe '.isLeapYear', ->
+      it 'should check a year whether be a leap', ->
+        DateType.isLeapYear(2012).should.be.true
+        DateType.isLeapYear(2016).should.be.true
+        DateType.isLeapYear(2020).should.be.true
+        DateType.isLeapYear(2024).should.be.true
+        for i in [2013..2015]
+          DateType.isLeapYear(i).should.be.false
+        for i in [2017..2019]
+          DateType.isLeapYear(i).should.be.false
+        for i in [2021..2023]
+          DateType.isLeapYear(i).should.be.false
+    describe '.getDaysInMonth', ->
+      it 'should get the days in a specifiedd month', ->
+        DateType.getDaysInMonth(2016,0).should.be.equal 31
+        DateType.getDaysInMonth(2016,1).should.be.equal 29
+    describe '.equals', ->
+      it 'should Compares the two Date whether be equal.', ->
+        DateType.equals(2,1).should.be.false
+        DateType.equals(1,1).should.be.true
+        DateType.equals(DateType.create(1), 1).should.be.true
+        DateType.equals(DateType.create(1), DateType.create(1)).should.be.true
+        expect(DateType.equals.bind(DateType, 'abc', 's')).to.be.throw 'abc - s'
+    describe '.compare', ->
+      it 'should Compares the two Date.', ->
+        DateType.compare(2,1).should.be.equal 1
+        DateType.compare(1,1).should.be.equal 0
+        DateType.compare(DateType.create(1), 2).should.be.equal -1
+        DateType.compare(DateType.create(2), DateType.create(1)).should.be.equal 1
+        expect(DateType.compare.bind(DateType, 'abc', 's')).to.be.throw 'abc - s'
 
     Tests(DateTypeInfo) if isFunction Tests
     valueTest(DateTypeInfo)
