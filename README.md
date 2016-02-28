@@ -33,13 +33,13 @@ var DateType = TypeInfo('date')
 var DateTypeInfo = require('date-type')
 var DateType = DateTypeInfo('date')
  */
-var FutureType = TypeInfo('date', min: DateType.now())
 
-var today = DateType.create()
-//var today = DateType.create(new Date()) //it's the same.
-//var today = DateType.create(Date.now()) //it's the same.
+var today = DateType.today()
+//var today = DateType.create(new Date()).clearTime() //it's the same.
+//var today = DateType.create(Date.now()).clearTime() //it's the same.
 
 var nextDay = today.clone().addDays 1
+var FutureType = TypeInfo('date', min: nextDay)
 
 console.log(today)
 //<type "Date": "value":"2016-02-28T04:13:46.352Z">
@@ -49,12 +49,15 @@ console.log(today.toJson()))
 //='"2016-02-28T04:13:46.352Z"'
 console.log(today.toJson({withType:true})))
 //='{"value":"2016-02-28T04:13:46.352Z","name":"Date"}'
-console.log(PositiveInt.isValid(-1))
-//=false
-n.assign(-1)
-//=TypeError: "-1" is an invalid Int
-console.log(n.assign(2)+0)
-//=2
+console.log(FutureType.isValid(nextDay))
+//=true
+console.log(FutureType.isValid(today))
+//=true
+var n = nextDay.clone();
+n.assign('aaa')
+//=TypeError: "aaa" is an invalid Date
+console.log(nextDay > today)
+//=true
 ```
 
 ## API
