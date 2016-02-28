@@ -1,7 +1,7 @@
 {
   "name": "date-type",
   "description": "the date type info object.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/snowyu/date-type.js",
   "repository": {
     "type": "git",
