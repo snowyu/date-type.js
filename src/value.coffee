@@ -64,4 +64,16 @@ module.exports = class DateValue
     @return {Date}    this
   ###
   addYears: (value)-> @addMonths value * 12
+  ###
+    Compares this instance to another Date object and returns true if they are equal.
+    @param {Date}     Date object to compare. If no date to compare, new Date() [now] is used.
+    @return {Boolean} true if dates are equal. false if they are not equal.
+  ###
+  equals: (value)-> @$type.equals @value, value
+  ###
+    Compares this instance to a Date object and returns an number indication of their relative values.
+    @param {Date}     Date object to compare [Required]
+    @return {Number}  -1 = this is lessthan date. 0 = values are equal. 1 = this is greaterthan date.
+  ###
+  compareTo: (value)-> @$type.compare @value, value
 
