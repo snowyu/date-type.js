@@ -17,37 +17,30 @@
 [codeclimate-test-svg]: https://codeclimate.com/github/snowyu/date-type.js/badges/coverage.svg
 [codeclimate-test]: https://codeclimate.com/github/snowyu/date-type.js/coverage
 
-
 The date type.
 
 ## Usage
 
 ```js
 //register the date type to the TypeInfo..
-require('date-type')
-var TypeInfo = require('abstract-type')
-//get the date type info:
-var DateType = TypeInfo('date')
-/*
-//Just load date type only:
-var DateTypeInfo = require('date-type')
-var DateType = DateTypeInfo('date')
- */
+import { Type, DateType } from 'date-type'
+
+expect(Type.get('Date')).toStrictEqual(DateType)
 
 var today = DateType.today()
-//var today = DateType.create(new Date()).clearTime() //it's the same.
-//var today = DateType.create(Date.now()).clearTime() //it's the same.
+//var today = new DateType(new Date()).clearTime() //it's the same.
+//var today = DateType.now().clearTime() //it's the same.
 
-var nextDay = today.clone().addDays 1
-var FutureType = TypeInfo('date', min: nextDay)
+var nextDay = today.clone().addDays(1)
+var FutureType = Type('date', {min: nextDay})
 
 console.log(today)
 //<type "Date": "value":"2016-02-28T04:13:46.352Z">
 console.log(today.isValid())
 //=true
-console.log(today.toJson()))
+console.log(today.toJson())
 //='"2016-02-28T04:13:46.352Z"'
-console.log(today.toJson({withType:true})))
+console.log(today.toJson({withType:true}))
 //='{"value":"2016-02-28T04:13:46.352Z","name":"Date"}'
 console.log(FutureType.isValid(nextDay))
 //=true

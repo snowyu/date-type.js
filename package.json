@@ -1,21 +1,22 @@
 {
   "name": "date-type",
-  "description": "the date type info object.",
-  "version": "0.1.2",
+  "description": "DateType info Class.",
+  "version": "2.0.0-alpha.0",
   "homepage": "https://github.com/snowyu/date-type.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/snowyu/date-type.js.git"
   },
-  "main": "./index",
+  "main": "./lib",
+  "types": "./types",
   "files": [
     "README.md",
     "LICENSE-MIT",
     "*.js",
-    "*.coffee",
     "test",
     "src",
-    "lib"
+    "lib",
+    "types"
   ],
   "keywords": [
     "abstract-type",
@@ -24,35 +25,46 @@
     "datetime",
     "type",
     "class",
-    "klass"
+    "json"
   ],
   "dependencies": {
-    "abstract-type": "^0.4.2",
-    "inherits-ex": "^1.1.4",
+    "inherits-ex": "^1.3.5",
+    "number-type": "^2.0.0-alpha.2",
     "util-ex": "^0.3.15"
   },
   "devDependencies": {
-    "chai": "~3.5.0",
-    "coffee-coverage": "^1.0.1",
-    "grunt": "~0.4.5",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-coffee": "~0.12.0",
-    "grunt-contrib-copy": "~0.7.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-mocha-test": "~0.12.6",
-    "grunt-newer": "~0.8.0",
-    "grunt-release": "~0.9.0",
-    "istanbul": "^0.4.2",
-    "mocha": "~2.4.5",
-    "pre-commit": "~1.1.1",
-    "rimraf": "~2.5.2",
-    "shasum": "1.0.0",
-    "sinon": "~1.17.3",
-    "sinon-chai": "~2.8.0"
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.15",
+    "@babel/eslint-parser": "^7.13.14",
+    "@babel/node": "^7.13.13",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-decorators": "^7.13.15",
+    "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.22",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "babel-jest": "^26.6.3",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^26.6.3",
+    "jest-extended": "^0.11.5",
+    "nps": "^5.10.0",
+    "nps-utils": "^1.7.0",
+    "prettier": "^2.3.0",
+    "typescript": "^4.2.4"
   },
   "scripts": {
-    "test": "grunt test",
-    "test-cov": "mocha --reporter dot && istanbul report text-summary lcovonly"
+    "start": "nps",
+    "build": "nps build; nps build.ts",
+    "test": "nps test",
+    "test-cov": "nps test.cov"
+  },
+  "engines": {
+    "node": ">=8"
   },
   "contributors": [
     {
@@ -66,9 +78,6 @@
       "name": "Riceball LEE",
       "email": "snowyu.lee@gmail.com"
     }
-  ],
-  "pre-commit": [
-    "test"
   ],
   "bugs": {
     "url": "https://github.com/snowyu/date-type.js/issues"

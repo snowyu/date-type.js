@@ -1,27 +1,23 @@
 language: node_js
 node_js:
-  - "0.10"
-  - "0.11"
-  - "0.12"
-  - "1.0"
-  - "1.8"
-  - "2.0"
-  - "2.2"
-  - "2.3"
-  - "4.0"
-  - "5.0"
+- '10'
+- '11'
+- '12'
+- '13'
+- '14'
 before_install:
-  - npm install -g grunt-cli
-  - npm install coffee-script
-before_script: grunt build
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+before_script:
+- "./cc-test-reporter before-build"
 script: npm run-script test-cov
 after_success:
-  - test -e ./coverage/lcov.info && npm install codeclimate-test-reporter && codeclimate-test-reporter
-    < ./coverage/lcov.info
+- test -e ./.coverage/lcov.info && ./cc-test-reporter format-coverage -t lcov ./.coverage/lcov.info
+  && ./cc-test-reporter upload-coverage
 notifications:
   email:
-    - snowyu.lee@gmail.com
-addons:
-  code_climate:
-    repo_token:
-      secure: "I235exbDYDnEE+NrfBYHt28/bBwjVZMRocXdNh7BQKfNjF/NjQKChFDoDhdn/i/K23HPp7S6TK0M5m3eFASZt502PscZHp90jT7u6ZerTHuSRq50a43v6+W4yWFgRTgda+WEjNzEwIFe0FYr4ZVQP9jfj9SZzRLJ1In3DPitdvdYH4TgQtGFNXMAVeWUO2dBHFCPgglPulQcxCXY2kiGLwcH1GyfUYRqjVyjp8eiybj/xwdrE47ijO16cbpdowWR7TW/v8taEwaOqh3Bzdpnf1rOZZEezxG6LYgYWD2hIK6RKsj3Cwofu9s0LJhjDL0/xK1vF3ssZhYfmnP/qsIxIf3CEB0FBjAEb2PbQG1xD7x5233SRiy4yizFqSzfJr9EnuR/IzYFNRkuAX0xyhKSDufvZc5Uhqv9bCnNNniv/UqTvAU5WUqZfwfWZCvStcAL53a56pq6YyS30eYoX38P117cCufnnr45hP1LYsP+q2qnIO5tQzqCg90aoQ5OL2UQxCdbs9CCWe8ID/cw6gFWHN0tMrp/EvAhdw51dVEto7DMWQj0wkTsSZJ3cLhV43Z9FaHuX/bafjEod7jW3a7O1S3k1wwE/0mM6D43ZLIBVO5lNyP1jzeDe4xuKgTu2ZXHrtrLeL7iR7SZuXJyl8xum+N/y5UsgDuRfQZ7w3A244A="
+  - snowyu.lee@gmail.com
+env:
+  global:
+    secure: fkbl17HhirT0graAVeqErg2zdzGsxha91rbBYoJ6w415+kFydJ4JbAULtS2x0MrOHycFBqxsOt2VReSz/JDhR3ao2PaXaSwD4omQoUP6MbWAg0WPfVaYkB+cHnxxc018jZh/TpzukA9FLSEgy+XTE39pwwWZEAm/7dAb+oXIWmhJRsMZ54VrQFPVq2ExPNuSeMV42ltUk3HWqHqCNciN8gR2MUUet1lBoyl7Wh7rOlcpyqjg7/RDyPsko6dGpA+mSLCavyIN/emlOOAp8FEN+AAghefjR3xvpvYyBnhkVuAOn5sfJoDu+k+BLAF8yudXa8IRurTgkCcfqL5DbTeKds2EokVdPi188dRqJ9NsvD8WaYQ4Th1p71QoRdWGzn2zoYkXFX5ESU0TqdpE4BILYLB4QeFzlYZInvVdfBUXKNFXDRuzXFhk6wph8bMjfBiEGSS9Y+CSHtvsFR9yW+2N4q1/UtlqJgDsctgNwBbn4bARrQgWM3ibIR29yF3vnb4Gs+aur2HMwDrPZCxUVg+kUruavpQ7XBTwfivV/nTs1eF5Shfq6QUuWKVpp1ZmXNOy4LL9kXlc6IDfgWaMdcowZPUNDQ/T6NKNZ6VKX5sQWgaHnK2xgtfr/gSkG7JgGB4gl/sg1oWyymmWSqZEEYG1TCjllUUd4+1S0TtDANzLlJE=
