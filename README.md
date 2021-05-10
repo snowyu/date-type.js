@@ -32,7 +32,7 @@ var today = DateType.today()
 //var today = DateType.now().clearTime() //it's the same.
 
 var nextDay = today.clone().addDays(1)
-var FutureType = Type('date', {min: nextDay})
+var FutureType = new Type('date', {min: nextDay})
 
 console.log(today)
 //<type "Date": "value":"2016-02-28T04:13:46.352Z">
