@@ -62,7 +62,7 @@ export class DateType extends AbstractNumberType {
   // declare _max: number | undefined
 
   static toValue(aValue): number | undefined {
-    let result =
+    let result: number | undefined =
       typeof aValue !== 'number' ? new Date(aValue).valueOf() : aValue
 
     if (isNaN(result)) result = undefined
@@ -109,8 +109,8 @@ export class DateType extends AbstractNumberType {
    * @returns -1 = value1 is less than value2. 0 = values are equal. 1 = value1 is greater than value2.
    */
   static compare(value1: Date | string, value2: Date | string): -1 | 0 | 1 {
-    const v1 = new Date(this.toValue(value1))
-    const v2 = new Date(this.toValue(value2))
+    const v1 = new Date(this.toValue(value1) as number)
+    const v2 = new Date(this.toValue(value2) as number)
     if (!isNaN(v1.valueOf()) && !isNaN(v2.valueOf())) {
       return v1 < v2 ? -1 : v1 > v2 ? 1 : 0
     } else {
