@@ -63,7 +63,9 @@ export class DateType extends AbstractNumberType {
 
   static toValue(aValue): number | undefined {
     let result: number | undefined =
-      typeof aValue !== 'number' ? new Date(aValue).valueOf() : aValue
+      aValue != null && typeof aValue !== 'number'
+        ? new Date(aValue).valueOf()
+        : aValue
 
     if (isNaN(result)) result = undefined
 
