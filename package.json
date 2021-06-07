@@ -1,7 +1,7 @@
 {
   "name": "date-type",
   "description": "DateType info Class.",
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.0-alpha.1",
   "homepage": "https://github.com/snowyu/date-type.js",
   "repository": {
     "type": "git",
